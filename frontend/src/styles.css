@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #172f3c;
+  --color-muted: #72838c;
+  --color-line: #e2e9eb;
+  --color-paper: #f4f7f8;
+  --color-brand: #147d68;
+  --color-mint: #e6f5ef;
+  --color-nav: #102a35;
+  --font-sans: "Segoe UI", "Inter", system-ui, sans-serif;
+}
+@layer base {
+  body {
+    @apply m-0 bg-paper font-sans text-ink antialiased;
+  }
+  button,
+  input,
+  select {
+    @apply font-[inherit];
+  }
+  button,
+  a {
+    @apply touch-manipulation;
+  }
+  button:not(:disabled),
+  a {
+    @apply cursor-pointer;
+  }
+  button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    @apply outline-3 outline-offset-3 outline-emerald-300;
+  }
+  input,
+  select {
+    @apply min-w-0;
+  }
+}
+@layer components {
+  .eyebrow {
+    @apply text-[10px] font-bold tracking-[.17em] uppercase;
+  }
+  .button {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-brand bg-brand px-5 py-3 text-xs font-semibold text-white transition-colors hover:bg-emerald-800 disabled:hover:bg-brand;
+  }
+  .button-secondary {
+    @apply border-line bg-white text-ink hover:border-emerald-300 hover:bg-emerald-50 disabled:hover:bg-white;
+  }
+  .field {
+    @apply block text-xs font-semibold text-ink;
+  }
+  .field > span:first-child {
+    @apply mb-2 block;
+  }
+  .input {
+    @apply block min-h-11 w-full rounded-lg border border-line bg-white px-3.5 py-3 text-[13px] font-normal text-ink transition-colors placeholder:text-slate-400 focus:border-brand;
+  }
+  .auth-layout {
+    @apply min-h-dvh bg-white lg:grid lg:grid-cols-[46%_54%];
+  }
+  .auth-story {
+    @apply relative hidden min-h-dvh flex-col overflow-hidden bg-nav p-10 xl:px-16 lg:flex;
+  }
+  .auth-story::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 30% 45%, #15534b3b, transparent 65%);
+  }
+  .auth-story > * {
+    position: relative;
+  }
+  .auth-form-section {
+    @apply flex min-h-dvh flex-col justify-center px-6 py-10 sm:px-12 lg:py-14;
+  }
+  .network-map {
+    background: linear-gradient(140deg, #163b4260, #0b202b40);
+  }
+  .role-choice {
+    @apply flex cursor-pointer flex-col items-center gap-2 rounded-lg border border-line p-3 text-[11px] text-muted transition-colors hover:bg-paper has-focus-visible:outline-3 has-focus-visible:outline-emerald-300;
+  }
+  .role-choice.selected {
+    @apply border-brand bg-mint text-brand;
+  }
+  .card {
+    @apply overflow-hidden rounded-xl border border-line bg-white;
+  }
+  .card-heading {
+    @apply flex items-center gap-3 border-b border-line p-6 text-sm font-semibold;
+  }
+  .card-heading svg {
+    @apply text-brand;
+  }
+  .workspace-sidebar {
+    @apply fixed inset-y-0 left-0 z-40 flex w-[244px] flex-col bg-nav transition-transform;
+  }
+  .nav-link {
+    @apply flex items-center gap-3 rounded-lg px-4 py-3 text-xs text-slate-400 hover:bg-white/5 hover:text-white;
+  }
+  .nav-link.active {
+    @apply bg-emerald-900/50 text-emerald-200 shadow-[inset_3px_0_0_#5bdbb3];
+  }
+  .avatar {
+    @apply grid size-10 shrink-0 place-items-center rounded-xl bg-mint text-xs font-semibold text-brand;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-[10px] font-semibold text-brand;
+  }
+  .welcome-card {
+    @apply flex items-center justify-between gap-5 overflow-hidden rounded-xl border border-emerald-900 bg-brand p-7 sm:p-9;
+    background: linear-gradient(115deg, #126956, #164a48);
+  }
+  .pagination {
+    @apply grid size-8 place-items-center rounded-md border border-line bg-white hover:border-brand;
+  }
+  .access-dialog {
+    @apply fixed inset-0 m-auto w-[calc(100%-2rem)] max-w-lg rounded-xl border border-line bg-white text-ink shadow-2xl;
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+  .access-dialog::backdrop {
+    background: #102a3575;
+    backdrop-filter: blur(3px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
